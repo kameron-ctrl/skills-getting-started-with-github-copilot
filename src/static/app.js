@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to fetch activities from API
   async function fetchActivities() {
     try {
-      const response = await fetch("/activities");
+      const response = await fetch("/activities", { cache: "no-store" });
       const activities = await response.json();
 
       // Clear loading message
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
               try {
                 const deleteResponse = await fetch(
                   `/activities/${encodeURIComponent(name)}/participants/${encodeURIComponent(participant)}`,
-                  { method: "DELETE" }
+                  { method: "DELETE", cache: "no-store" }
                 );
                 const deleteResult = await deleteResponse.json();
 
@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `/activities/${encodeURIComponent(activity)}/signup?email=${encodeURIComponent(email)}`,
         {
           method: "POST",
+          cache: "no-store",
         }
       );
 
